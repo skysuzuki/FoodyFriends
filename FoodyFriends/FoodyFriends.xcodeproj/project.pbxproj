@@ -13,6 +13,10 @@
 		BBD12CBA235E2904003AFECA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBD12CB8235E2904003AFECA /* Main.storyboard */; };
 		BBD12CBC235E2905003AFECA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBD12CBB235E2905003AFECA /* Assets.xcassets */; };
 		BBD12CBF235E2905003AFECA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBD12CBD235E2905003AFECA /* LaunchScreen.storyboard */; };
+		BBD12CC7235E3D67003AFECA /* PTEsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD12CC6235E3D67003AFECA /* PTEsTableViewCell.swift */; };
+		BBD12CCA235E3E77003AFECA /* PTEsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD12CC9235E3E77003AFECA /* PTEsModel.swift */; };
+		BBD12CCC235E4540003AFECA /* PTEsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD12CCB235E4540003AFECA /* PTEsDetailViewController.swift */; };
+		BBD12CCE235E4DCD003AFECA /* PTEsModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD12CCD235E4DCD003AFECA /* PTEsModelController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		BBD12CBB235E2905003AFECA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BBD12CBE235E2905003AFECA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BBD12CC0235E2905003AFECA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BBD12CC6235E3D67003AFECA /* PTEsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PTEsTableViewCell.swift; sourceTree = "<group>"; };
+		BBD12CC9235E3E77003AFECA /* PTEsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PTEsModel.swift; sourceTree = "<group>"; };
+		BBD12CCB235E4540003AFECA /* PTEsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PTEsDetailViewController.swift; sourceTree = "<group>"; };
+		BBD12CCD235E4DCD003AFECA /* PTEsModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PTEsModelController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,13 +66,41 @@
 			children = (
 				BBD12CB2235E2904003AFECA /* AppDelegate.swift */,
 				BBD12CB4235E2904003AFECA /* SceneDelegate.swift */,
-				BBD12CB6235E2904003AFECA /* MainFoodViewController.swift */,
+				BBD12CC8235E3D6E003AFECA /* View Controllers */,
+				BBD12CCF235E4FCF003AFECA /* Model Controllers */,
+				BBD12CD0235E4FE4003AFECA /* Models */,
+				BBD12CC6235E3D67003AFECA /* PTEsTableViewCell.swift */,
 				BBD12CB8235E2904003AFECA /* Main.storyboard */,
 				BBD12CBB235E2905003AFECA /* Assets.xcassets */,
 				BBD12CBD235E2905003AFECA /* LaunchScreen.storyboard */,
 				BBD12CC0235E2905003AFECA /* Info.plist */,
 			);
 			path = FoodyFriends;
+			sourceTree = "<group>";
+		};
+		BBD12CC8235E3D6E003AFECA /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				BBD12CB6235E2904003AFECA /* MainFoodViewController.swift */,
+				BBD12CCB235E4540003AFECA /* PTEsDetailViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		BBD12CCF235E4FCF003AFECA /* Model Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				BBD12CCD235E4DCD003AFECA /* PTEsModelController.swift */,
+			);
+			path = "Model Controllers";
+			sourceTree = "<group>";
+		};
+		BBD12CD0235E4FE4003AFECA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BBD12CC9235E3E77003AFECA /* PTEsModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,7 +174,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBD12CCA235E3E77003AFECA /* PTEsModel.swift in Sources */,
 				BBD12CB7235E2904003AFECA /* MainFoodViewController.swift in Sources */,
+				BBD12CC7235E3D67003AFECA /* PTEsTableViewCell.swift in Sources */,
+				BBD12CCC235E4540003AFECA /* PTEsDetailViewController.swift in Sources */,
+				BBD12CCE235E4DCD003AFECA /* PTEsModelController.swift in Sources */,
 				BBD12CB3235E2904003AFECA /* AppDelegate.swift in Sources */,
 				BBD12CB5235E2904003AFECA /* SceneDelegate.swift in Sources */,
 			);

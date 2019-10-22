@@ -20,12 +20,26 @@ class PTEsDatePickerViewController: UIViewController {
     
     // MARK: - Properties
     var datePickerDelegate: PTEsDatePickerDelegate?
+    var scheduledDate: Date?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        updateViews()
     }
+    
+    private func updateViews() {
+        
+        // Makes sure user cannot set a date to anything before current date
+        let currentDate = Date()
+        datePicker.minimumDate = currentDate
+        // If date passed in is not optional set it to the current date/time
+        if let scheduledDate = scheduledDate {
+            datePicker.setDate(scheduledDate, animated: false)
+        }
+    }
+    
     
     // MARK: - IBActions
     @IBAction func saveTapped(_ sender: UIBarButtonItem) {

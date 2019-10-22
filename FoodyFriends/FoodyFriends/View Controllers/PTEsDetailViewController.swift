@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import UserNotifications
 
 protocol PTEsUpdateDelegate {
     func placesToEatWasUpdated()
 }
 
-class PTEsDetailViewController: UIViewController {
+class PTEsDetailViewController: UIViewController, UNUserNotificationCenterDelegate {
 
     // MARK: IBOutlets
     @IBOutlet weak var imageView: UIImageView!
@@ -22,6 +23,11 @@ class PTEsDetailViewController: UIViewController {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var descriptionTextView: UITextView!
     
+    // MARK: - Properties
+    // Set
+    let notificationCenter = UNUserNotificationCenter.current()
+    
+    // Optionals
     var pteController: PlacesToEatController?
     var placeToEat: PlaceToEat?
     var pteDelegate: PTEsUpdateDelegate?
@@ -32,7 +38,7 @@ class PTEsDetailViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         updateViews()
-        
+        UNUserNotificationCenter.current().delegate = self
     }
     
     private func updateViews() {
@@ -52,6 +58,7 @@ class PTEsDetailViewController: UIViewController {
         if segue.identifier == "DatePickerSegue" {
             if let datePickerVC = segue.destination as? PTEsDatePickerViewController {
                 datePickerVC.datePickerDelegate = self
+                datePickerVC.scheduledDate = self.scheduledDate
             }
         }
     }
@@ -75,6 +82,46 @@ class PTEsDetailViewController: UIViewController {
         scheduledDate = dateToBeFormatted
     }
     
+    // MARK: Notification functions
+    private func scheduleDateNotification() {
+        notificationCenter.getNotificationSettings { settings in
+            
+            switch settings.authorizationStatus {
+            case .authorized:
+                self.dateNotificationContent()
+                
+            case .notDetermined:
+                self.notificationCenter.requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
+                    
+                    guard granted else { return }
+                    
+                    self.dateNotificationContent()
+                }
+            default:
+                break
+            }
+        }
+        
+    }
+        
+    private func dateNotificationContent() {
+        
+        let content = UNMutableNotificationContent()
+        content.title = "Time to eat!"
+        content.body = "Scheduled meetup at \(nameOfPlaceTextField.text!), \(addressTextField.text!) on \(dateLabel.text!) at \(timeLabel.text!)."
+        //content.categoryIdentifier = "alarm"
+        //content.userInfo = ["customData": "fizzbuzz"]
+        content.sound = UNNotificationSound.default
+
+        
+        var dateComponents = DateComponents()
+        // Set flags so it only cares about certain datecomponents when setting it up with the Calender.current.datecomponents
+        let unitFlags: Set<Calendar.Component> = [.day, .month, .year, .hour, .minute, .calendar]
+        dateComponents = Calendar.current.dateComponents(unitFlags, from: scheduledDate!)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        notificationCenter.add(request)
+    }
     
     // MARK: - IBActions
     @IBAction func saveTapped(_ sender: UIBarButtonItem) {
@@ -91,14 +138,15 @@ class PTEsDetailViewController: UIViewController {
         } else {
             pteController.createPlaceToEat(nameOfPlaceText, addressText, descriptionTextView.text, scheduledDate, Data())
         }
-                
+        
+        scheduleDateNotification()
         self.navigationController?.popToRootViewController(animated: true)
         pteDelegate?.placesToEatWasUpdated()
     }
 
 }
 
-
+// MARK: - Delegates
 
 extension PTEsDetailViewController: PTEsDatePickerDelegate {
     

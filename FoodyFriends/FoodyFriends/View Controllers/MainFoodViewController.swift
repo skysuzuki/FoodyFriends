@@ -12,7 +12,7 @@ private let pteCellIndentifier = "PTEsCell"
 private let pteAddSegueIdentifier = "PTEsAddSegue"
 private let pteDetailSegueIdentifier = "PTEsDetailSegue"
 
-class MainFoodViewController: UIViewController {
+class MainFoodViewController: UIViewController, UNUserNotificationCenterDelegate {
 
     // MARK: - IBOutlets
     @IBOutlet weak var PTEsTableView: UITableView!
@@ -22,6 +22,7 @@ class MainFoodViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        UNUserNotificationCenter.current().delegate = self
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

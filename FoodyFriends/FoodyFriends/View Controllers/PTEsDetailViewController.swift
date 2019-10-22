@@ -37,6 +37,7 @@ class PTEsDetailViewController: UIViewController {
     
     private func updateViews() {
         
+        // Used when user clicks a cell
         guard let placeToEat = placeToEat else { return }
         nameOfPlaceTextField.text = placeToEat.name
         addressTextField.text = placeToEat.address

@@ -60,6 +60,16 @@ extension MainFoodViewController: UITableViewDataSource {
         cell.placeToEat = placeToEat
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            let placeToEat = pteController.placesToEat[indexPath.row]
+            pteController.deletePlaceToEat(placeToEat)
+            PTEsTableView.deleteRows(at: [indexPath], with: .fade)
+        }
+        PTEsTableView.reloadData()
+    }
 }
 
 extension MainFoodViewController: PTEsUpdateDelegate {

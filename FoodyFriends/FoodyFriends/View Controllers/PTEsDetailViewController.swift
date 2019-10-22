@@ -125,11 +125,15 @@ class PTEsDetailViewController: UIViewController, UNUserNotificationCenterDelega
         
     }
         
-    private func dateNotificationContent() {
+    func dateNotificationContent() {
         
         let content = UNMutableNotificationContent()
+        let nameOfPlaceText = nameOfPlaceTextField.text!
+        let addressText = addressTextField.text!
+        let dateText = dateLabel.text!
+        let timeText = timeLabel.text!
         content.title = "Time to eat!"
-        content.body = "Scheduled meetup at \(nameOfPlaceTextField.text!), \(addressTextField.text!) on \(dateLabel.text!) at \(timeLabel.text!)."
+        content.body = "Scheduled meetup at \(nameOfPlaceText), \(addressText) on \(dateText) at \(timeText)."
         //content.categoryIdentifier = "alarm"
         //content.userInfo = ["customData": "fizzbuzz"]
         content.sound = UNNotificationSound.default

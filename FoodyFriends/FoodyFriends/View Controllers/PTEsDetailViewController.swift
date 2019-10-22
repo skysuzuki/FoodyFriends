@@ -36,7 +36,8 @@ class PTEsDetailViewController: UIViewController, UNUserNotificationCenterDelega
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        // Do any additional setup after loading the view
+        nameOfPlaceTextField.becomeFirstResponder()
         updateViews()
         UNUserNotificationCenter.current().delegate = self
     }
@@ -81,6 +82,26 @@ class PTEsDetailViewController: UIViewController, UNUserNotificationCenterDelega
         // Make sure to set the optional date variable
         scheduledDate = dateToBeFormatted
     }
+    
+    private func showMissingFieldsAlert() {
+        var message = "Please fill in:\n"
+        if let nameOfPlaceText = nameOfPlaceTextField.text,
+            nameOfPlaceText.isEmpty {
+            message += "Name of place\n"
+        }
+        if let addressText = addressTextField.text,
+            addressText.isEmpty {
+            message += "Address\n"
+        }
+        if scheduledDate == nil {
+            message += "Scheduled Date"
+        }
+        
+        let alert = UIAlertController(title: "Missing Entry!", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+    
     
     // MARK: Notification functions
     private func scheduleDateNotification() {
@@ -128,22 +149,21 @@ class PTEsDetailViewController: UIViewController, UNUserNotificationCenterDelega
         
         guard let pteController = pteController,
             let nameOfPlaceText = nameOfPlaceTextField.text,
-            let addressText = addressTextField.text,
-            !nameOfPlaceText.isEmpty,
-            !addressText.isEmpty,
-            let scheduledDate = scheduledDate else { return }
+            let addressText = addressTextField.text else { return }
         
-        if let placeToEat = placeToEat {
-            pteController.editPlaceToEat(placeToEat, updatedName: nameOfPlaceText, updatedAddress: addressText, updatedDescription: descriptionTextView.text, updatedDate: scheduledDate, updatedImage: Data())
+        if (nameOfPlaceText.isEmpty || addressText.isEmpty || scheduledDate == nil) {
+            showMissingFieldsAlert()
         } else {
-            pteController.createPlaceToEat(nameOfPlaceText, addressText, descriptionTextView.text, scheduledDate, Data())
+            if let placeToEat = placeToEat {
+                pteController.editPlaceToEat(placeToEat, updatedName: nameOfPlaceText, updatedAddress: addressText, updatedDescription: descriptionTextView.text, updatedDate: scheduledDate!, updatedImage: Data())
+            } else {
+                pteController.createPlaceToEat(nameOfPlaceText, addressText, descriptionTextView.text, scheduledDate!, Data())
+            }
+            scheduleDateNotification()
+            self.navigationController?.popToRootViewController(animated: true)
+            pteDelegate?.placesToEatWasUpdated()
         }
-        
-        scheduleDateNotification()
-        self.navigationController?.popToRootViewController(animated: true)
-        pteDelegate?.placesToEatWasUpdated()
     }
-
 }
 
 // MARK: - Delegates

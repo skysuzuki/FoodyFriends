@@ -75,6 +75,14 @@ extension MainFoodViewController: UITableViewDataSource {
 
 extension MainFoodViewController: PTEsUpdateDelegate {
     func placesToEatWasUpdated() {
+        
+        // Only sort if there is more than one thing in the array
+        if (pteController.placesToEat.count > 1) {
+            pteController.placesToEat.sort { (date1, date2) -> Bool in
+                return date1.scheduledDate.compare(date2.scheduledDate) == ComparisonResult.orderedAscending
+            }
+        }
+        
         PTEsTableView.reloadData()
     }
 }

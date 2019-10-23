@@ -102,7 +102,6 @@ class PTEsDetailViewController: UIViewController, UNUserNotificationCenterDelega
         present(alert, animated: true, completion: nil)
     }
     
-    
     // MARK: Notification functions
     private func scheduleDateNotification() {
         notificationCenter.getNotificationSettings { settings in

@@ -11,7 +11,9 @@ import UIKit
 class PTEsTableViewCell: UITableViewCell {
 
     // MARK: - IBOutlets
-    @IBOutlet weak var pteLabel: UILabel!
+    @IBOutlet weak var pteNameLabel: UILabel!
+    @IBOutlet weak var pteAddressLabel: UILabel!
+    @IBOutlet weak var pteImageView: UIImageView!
     
     // MARK: - Properties
     var placeToEat: PlaceToEat? {
@@ -34,7 +36,9 @@ class PTEsTableViewCell: UITableViewCell {
     // MARK: - Class Functions
     private func updateViews() {
         guard let placeToEat = placeToEat else { return }
-        pteLabel.text = placeToEat.name
+        pteNameLabel.text = placeToEat.name
+        pteAddressLabel.text = placeToEat.address
+        pteImageView.image = UIImage(data: placeToEat.image)
     }
 
 }

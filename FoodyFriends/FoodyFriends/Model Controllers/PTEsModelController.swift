@@ -47,6 +47,15 @@ class PlacesToEatController  {
         saveToPersistentStore()
     }
     
+    func sortPlaceToEatByDate() {
+        if (placesToEat.count > 1) {
+            placesToEat.sort { (date1, date2) -> Bool in
+                return date1.scheduledDate.compare(date2.scheduledDate) == ComparisonResult.orderedAscending
+            }
+            saveToPersistentStore()
+        }
+    }
+    
     // MARK: - Persistence
     
     private var placesToEatURL: URL? {

@@ -11,6 +11,7 @@ import UIKit
 private let pteCellIndentifier = "PTEsCell"
 private let pteAddSegueIdentifier = "PTEsAddSegue"
 private let pteDetailSegueIdentifier = "PTEsDetailSegue"
+private let groupMembersSegueIdentifier = "GroupMembersSegue"
 
 class MainFoodViewController: UIViewController, UNUserNotificationCenterDelegate {
 
@@ -39,6 +40,10 @@ class MainFoodViewController: UIViewController, UNUserNotificationCenterDelegate
                 addPTEsVC.pteController = self.pteController
                 addPTEsVC.placeToEat = self.pteController.placesToEat[indexPath.row]
                 addPTEsVC.pteDelegate = self
+            }
+        case groupMembersSegueIdentifier:
+            if let groupMembersVC = segue.destination as? GroupMembersTableViewController {
+                
             }
         default:
             return
@@ -76,13 +81,7 @@ extension MainFoodViewController: UITableViewDataSource {
 extension MainFoodViewController: PTEsUpdateDelegate {
     func placesToEatWasUpdated() {
         
-        // Only sort if there is more than one thing in the array
-        if (pteController.placesToEat.count > 1) {
-            pteController.placesToEat.sort { (date1, date2) -> Bool in
-                return date1.scheduledDate.compare(date2.scheduledDate) == ComparisonResult.orderedAscending
-            }
-        }
-        
+        pteController.sortPlaceToEatByDate()
         PTEsTableView.reloadData()
     }
 }

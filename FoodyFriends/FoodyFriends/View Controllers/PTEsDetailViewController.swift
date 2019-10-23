@@ -37,6 +37,7 @@ class PTEsDetailViewController: UIViewController, UNUserNotificationCenterDelega
         super.viewDidLoad()
 
         // Do any additional setup after loading the view
+        
         nameOfPlaceTextField.becomeFirstResponder()
         updateViews()
         UNUserNotificationCenter.current().delegate = self
@@ -44,12 +45,15 @@ class PTEsDetailViewController: UIViewController, UNUserNotificationCenterDelega
     
     private func updateViews() {
         
-        // Used when user clicks a cell
-        guard let placeToEat = placeToEat else { return }
-        nameOfPlaceTextField.text = placeToEat.name
-        addressTextField.text = placeToEat.address
-        descriptionTextView.text = placeToEat.description
-        dateAndTimeLabelFormatter(placeToEat.scheduledDate)
+        if let placeToEat = placeToEat {
+            self.title = placeToEat.name
+            nameOfPlaceTextField.text = placeToEat.name
+            addressTextField.text = placeToEat.address
+            descriptionTextView.text = placeToEat.description
+            dateAndTimeLabelFormatter(placeToEat.scheduledDate)
+        } else {
+            self.title = "Add a place to eat"
+        }        
     }
 
     // MARK: - Navigation

@@ -18,6 +18,12 @@
 		BBD12CCC235E4540003AFECA /* PTEsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD12CCB235E4540003AFECA /* PTEsDetailViewController.swift */; };
 		BBD12CCE235E4DCD003AFECA /* PTEsModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD12CCD235E4DCD003AFECA /* PTEsModelController.swift */; };
 		BBD12CD2235E6042003AFECA /* PTEsDatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD12CD1235E6042003AFECA /* PTEsDatePickerViewController.swift */; };
+		BBD12CD42360C621003AFECA /* GroupMembers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBD12CD32360C621003AFECA /* GroupMembers.storyboard */; };
+		BBD12CD92360D1A3003AFECA /* GroupMembersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD12CD82360D1A3003AFECA /* GroupMembersTableViewController.swift */; };
+		BBD12CDD2360D3B0003AFECA /* GroupMembersModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD12CDC2360D3B0003AFECA /* GroupMembersModelController.swift */; };
+		BBD12CDF2360D440003AFECA /* MemberModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD12CDE2360D440003AFECA /* MemberModel.swift */; };
+		BBD12CE12360D701003AFECA /* MemberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD12CE02360D701003AFECA /* MemberTableViewCell.swift */; };
+		BBD12CE32360D863003AFECA /* MemberDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD12CE22360D863003AFECA /* MemberDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +40,12 @@
 		BBD12CCB235E4540003AFECA /* PTEsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PTEsDetailViewController.swift; sourceTree = "<group>"; };
 		BBD12CCD235E4DCD003AFECA /* PTEsModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PTEsModelController.swift; sourceTree = "<group>"; };
 		BBD12CD1235E6042003AFECA /* PTEsDatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PTEsDatePickerViewController.swift; sourceTree = "<group>"; };
+		BBD12CD32360C621003AFECA /* GroupMembers.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GroupMembers.storyboard; sourceTree = "<group>"; };
+		BBD12CD82360D1A3003AFECA /* GroupMembersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupMembersTableViewController.swift; sourceTree = "<group>"; };
+		BBD12CDC2360D3B0003AFECA /* GroupMembersModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupMembersModelController.swift; sourceTree = "<group>"; };
+		BBD12CDE2360D440003AFECA /* MemberModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberModel.swift; sourceTree = "<group>"; };
+		BBD12CE02360D701003AFECA /* MemberTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MemberTableViewCell.swift; path = FoodyFriends/MemberTableViewCell.swift; sourceTree = SOURCE_ROOT; };
+		BBD12CE22360D863003AFECA /* MemberDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MemberDetailViewController.swift; path = "FoodyFriends/View Controllers/MemberDetailViewController.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,7 +84,8 @@
 				BBD12CCF235E4FCF003AFECA /* Model Controllers */,
 				BBD12CD0235E4FE4003AFECA /* Models */,
 				BBD12CC6235E3D67003AFECA /* PTEsTableViewCell.swift */,
-				BBD12CB8235E2904003AFECA /* Main.storyboard */,
+				BBD12CE02360D701003AFECA /* MemberTableViewCell.swift */,
+				BBD12CD52360C62B003AFECA /* Storyboards */,
 				BBD12CBB235E2905003AFECA /* Assets.xcassets */,
 				BBD12CBD235E2905003AFECA /* LaunchScreen.storyboard */,
 				BBD12CC0235E2905003AFECA /* Info.plist */,
@@ -86,6 +99,8 @@
 				BBD12CD1235E6042003AFECA /* PTEsDatePickerViewController.swift */,
 				BBD12CB6235E2904003AFECA /* MainFoodViewController.swift */,
 				BBD12CCB235E4540003AFECA /* PTEsDetailViewController.swift */,
+				BBD12CD82360D1A3003AFECA /* GroupMembersTableViewController.swift */,
+				BBD12CE22360D863003AFECA /* MemberDetailViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -94,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				BBD12CCD235E4DCD003AFECA /* PTEsModelController.swift */,
+				BBD12CDC2360D3B0003AFECA /* GroupMembersModelController.swift */,
 			);
 			path = "Model Controllers";
 			sourceTree = "<group>";
@@ -102,8 +118,18 @@
 			isa = PBXGroup;
 			children = (
 				BBD12CC9235E3E77003AFECA /* PTEsModel.swift */,
+				BBD12CDE2360D440003AFECA /* MemberModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		BBD12CD52360C62B003AFECA /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				BBD12CB8235E2904003AFECA /* Main.storyboard */,
+				BBD12CD32360C621003AFECA /* GroupMembers.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -166,6 +192,7 @@
 			files = (
 				BBD12CBF235E2905003AFECA /* LaunchScreen.storyboard in Resources */,
 				BBD12CBC235E2905003AFECA /* Assets.xcassets in Resources */,
+				BBD12CD42360C621003AFECA /* GroupMembers.storyboard in Resources */,
 				BBD12CBA235E2904003AFECA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -181,10 +208,15 @@
 				BBD12CB7235E2904003AFECA /* MainFoodViewController.swift in Sources */,
 				BBD12CC7235E3D67003AFECA /* PTEsTableViewCell.swift in Sources */,
 				BBD12CCC235E4540003AFECA /* PTEsDetailViewController.swift in Sources */,
+				BBD12CD92360D1A3003AFECA /* GroupMembersTableViewController.swift in Sources */,
 				BBD12CD2235E6042003AFECA /* PTEsDatePickerViewController.swift in Sources */,
 				BBD12CCE235E4DCD003AFECA /* PTEsModelController.swift in Sources */,
+				BBD12CE12360D701003AFECA /* MemberTableViewCell.swift in Sources */,
 				BBD12CB3235E2904003AFECA /* AppDelegate.swift in Sources */,
+				BBD12CDD2360D3B0003AFECA /* GroupMembersModelController.swift in Sources */,
 				BBD12CB5235E2904003AFECA /* SceneDelegate.swift in Sources */,
+				BBD12CDF2360D440003AFECA /* MemberModel.swift in Sources */,
+				BBD12CE32360D863003AFECA /* MemberDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

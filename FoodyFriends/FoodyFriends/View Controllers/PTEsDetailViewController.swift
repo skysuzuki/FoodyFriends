@@ -8,12 +8,14 @@
 
 import UIKit
 import UserNotifications
+import Photos
 
 protocol PTEsUpdateDelegate {
     func placesToEatWasUpdated()
 }
 
-class PTEsDetailViewController: UIViewController, UNUserNotificationCenterDelegate {
+class PTEsDetailViewController: UIViewController, UNUserNotificationCenterDelegate,
+UINavigationControllerDelegate, UIImagePickerControllerDelegate{
 
     // MARK: IBOutlets
     @IBOutlet weak var imageView: UIImageView!
@@ -22,6 +24,7 @@ class PTEsDetailViewController: UIViewController, UNUserNotificationCenterDelega
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var descriptionTextView: UITextView!
+    @IBOutlet weak var addPhotosButton: UIButton!
     
     // MARK: - Properties
     // Set
@@ -50,10 +53,12 @@ class PTEsDetailViewController: UIViewController, UNUserNotificationCenterDelega
             nameOfPlaceTextField.text = placeToEat.name
             addressTextField.text = placeToEat.address
             descriptionTextView.text = placeToEat.description
+            imageView.image = UIImage(data: placeToEat.image)
+            addPhotosButton.setTitle("Edit Photo", for: .normal)
             dateAndTimeLabelFormatter(placeToEat.scheduledDate)
         } else {
             self.title = "Add a place to eat"
-        }        
+        }
     }
 
     // MARK: - Navigation
@@ -131,12 +136,14 @@ class PTEsDetailViewController: UIViewController, UNUserNotificationCenterDelega
     func dateNotificationContent() {
         
         let content = UNMutableNotificationContent()
-        let nameOfPlaceText = nameOfPlaceTextField.text!
-        let addressText = addressTextField.text!
-        let dateText = dateLabel.text!
-        let timeText = timeLabel.text!
         content.title = "Time to eat!"
-        content.body = "Scheduled meetup at \(nameOfPlaceText), \(addressText) on \(dateText) at \(timeText)."
+        DispatchQueue.main.async {
+            let nameOfPlaceText = self.nameOfPlaceTextField.text!
+            let addressText = self.addressTextField.text!
+            let dateText = self.dateLabel.text!
+            let timeText = self.timeLabel.text!
+            content.body = "Scheduled meetup at \(nameOfPlaceText), \(addressText) on \(dateText) at \(timeText)."
+        }
         //content.categoryIdentifier = "alarm"
         //content.userInfo = ["customData": "fizzbuzz"]
         content.sound = UNNotificationSound.default
@@ -151,25 +158,73 @@ class PTEsDetailViewController: UIViewController, UNUserNotificationCenterDelega
         notificationCenter.add(request)
     }
     
+    // MARK: Photo Permissions
+    
+    private func presentImagePickerController() {
+        let imagePicker = UIImagePickerController()
+        DispatchQueue.main.async {
+            guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else { return }
+            imagePicker.delegate = self
+            imagePicker.sourceType = .photoLibrary
+        }
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    internal func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        picker.dismiss(animated: true, completion: nil)
+        
+        guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }
+        
+        imageView.image = image
+        addPhotosButton.setTitle("Edit Photo", for: .normal)
+    }
+    
+    
     // MARK: - IBActions
     @IBAction func saveTapped(_ sender: UIBarButtonItem) {
         
         guard let pteController = pteController,
             let nameOfPlaceText = nameOfPlaceTextField.text,
-            let addressText = addressTextField.text else { return }
+            let addressText = addressTextField.text,
+            let imageData = imageView.image?.pngData() else { return }
         
         if (nameOfPlaceText.isEmpty || addressText.isEmpty || scheduledDate == nil) {
             showMissingFieldsAlert()
         } else {
             if let placeToEat = placeToEat {
-                pteController.editPlaceToEat(placeToEat, updatedName: nameOfPlaceText, updatedAddress: addressText, updatedDescription: descriptionTextView.text, updatedDate: scheduledDate!, updatedImage: Data())
+                
+                pteController.editPlaceToEat(placeToEat, updatedName: nameOfPlaceText, updatedAddress: addressText, updatedDescription: descriptionTextView.text, updatedDate: scheduledDate!, updatedImage: imageData)
             } else {
-                pteController.createPlaceToEat(nameOfPlaceText, addressText, descriptionTextView.text, scheduledDate!, Data())
+                pteController.createPlaceToEat(nameOfPlaceText, addressText, descriptionTextView.text, scheduledDate!, imageData)
             }
             scheduleDateNotification()
             self.navigationController?.popToRootViewController(animated: true)
             pteDelegate?.placesToEatWasUpdated()
         }
+    }
+    
+    @IBAction func addPhotoTapped(_ sender: UIButton) {
+        
+        let authorizationStatus = PHPhotoLibrary.authorizationStatus()
+        
+        switch authorizationStatus {
+        case .authorized:
+            presentImagePickerController()
+            
+        case .notDetermined:
+            
+            PHPhotoLibrary.requestAuthorization { (status) in
+                
+                guard status == .authorized else { NSLog("User did not authorize access to the photo library"); return }
+                
+                self.presentImagePickerController()
+            }
+             
+        default:
+            break
+        }
+
     }
 }
 

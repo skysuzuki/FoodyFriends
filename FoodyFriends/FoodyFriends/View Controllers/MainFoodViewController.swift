@@ -19,6 +19,7 @@ class MainFoodViewController: UIViewController, UNUserNotificationCenterDelegate
     @IBOutlet weak var PTEsTableView: UITableView!
     
     var pteController = PlacesToEatController()
+    var groupMembersController = GroupMembersModelController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +44,7 @@ class MainFoodViewController: UIViewController, UNUserNotificationCenterDelegate
             }
         case groupMembersSegueIdentifier:
             if let groupMembersVC = segue.destination as? GroupMembersTableViewController {
-                
+                groupMembersVC.groupMembersController = self.groupMembersController
             }
         default:
             return

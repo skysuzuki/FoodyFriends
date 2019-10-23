@@ -86,9 +86,17 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fbr-gR-YW4">
                                 <rect key="frame" x="0.0" y="759" width="414" height="49"/>
                                 <items>
-                                    <barButtonItem systemItem="cancel" id="7hp-py-F9v"/>
+                                    <barButtonItem systemItem="cancel" id="7hp-py-F9v">
+                                        <connections>
+                                            <action selector="cancelTapped:" destination="ahp-FG-0yL" id="QIs-EZ-Ow2"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="ri4-hS-azY"/>
-                                    <barButtonItem systemItem="save" id="txk-qA-rL3"/>
+                                    <barButtonItem systemItem="save" id="txk-qA-rL3">
+                                        <connections>
+                                            <action selector="saveTapped:" destination="ahp-FG-0yL" id="jyi-NS-8ZE"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="7BD-gB-zFc">
@@ -124,6 +132,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="VoC-4m-duU"/>
                     </view>
+                    <connections>
+                        <outlet property="nameTextField" destination="NXt-kR-uzH" id="CkR-PU-Rh0"/>
+                        <outlet property="titleLabel" destination="Ifk-Mw-izX" id="FSW-eO-apk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QoO-Au-oUY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

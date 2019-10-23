@@ -10,10 +10,10 @@ import Foundation
 
 struct Member: Equatable, Codable {
     var name: String
-    var hasVoted: Bool
+    var isGoing: Bool
     
-    init(_ name: String, _ hasVoted: Bool = false) {
+    init(_ name: String, _ isGoing: Bool = false) {
         self.name = name
-        self.hasVoted = hasVoted
+        self.isGoing = isGoing
     }
 }

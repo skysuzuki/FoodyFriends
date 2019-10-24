@@ -28,6 +28,13 @@ class GroupMembersModelController {
         saveToPersistentStore()
     }
     
+    func randomIsComing() {
+        for index in 0...(groupMembers.count - 1) {
+            let isComing = Int.random(in: 1...10)
+            groupMembers[index].isGoing = (isComing % 2 == 0) ? true : false
+        }
+    }
+    
     // MARK: - Persistence
     
     private var groupMembersURL: URL? {

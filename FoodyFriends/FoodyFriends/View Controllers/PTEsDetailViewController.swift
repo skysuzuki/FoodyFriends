@@ -25,6 +25,9 @@ UINavigationControllerDelegate, UIImagePickerControllerDelegate{
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var addPhotosButton: UIButton!
+    // Table view outlets
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var attendingTVLabel: UILabel!
     
     // MARK: - Properties
     // Set
@@ -32,6 +35,7 @@ UINavigationControllerDelegate, UIImagePickerControllerDelegate{
     
     // Optionals
     var pteController: PlacesToEatController?
+    var groupMembersController: GroupMembersModelController?
     var placeToEat: PlaceToEat?
     var pteDelegate: PTEsUpdateDelegate?
     var scheduledDate: Date?
@@ -41,23 +45,29 @@ UINavigationControllerDelegate, UIImagePickerControllerDelegate{
 
         // Do any additional setup after loading the view
         
-        nameOfPlaceTextField.becomeFirstResponder()
+        
         updateViews()
+        nameOfPlaceTextField.becomeFirstResponder()
         UNUserNotificationCenter.current().delegate = self
+        //tableView.delegate = self
     }
     
     private func updateViews() {
         
         if let placeToEat = placeToEat {
             self.title = placeToEat.name
+            attendingTVLabel.isHidden = false
             nameOfPlaceTextField.text = placeToEat.name
             addressTextField.text = placeToEat.address
             descriptionTextView.text = placeToEat.description
             imageView.image = UIImage(data: placeToEat.image)
             addPhotosButton.setTitle("Edit Photo", for: .normal)
             dateAndTimeLabelFormatter(placeToEat.scheduledDate)
+            groupMembersController?.randomIsComing()
+            
         } else {
             self.title = "Add a place to eat"
+            attendingTVLabel.isHidden = true
         }
     }
 
@@ -226,6 +236,28 @@ UINavigationControllerDelegate, UIImagePickerControllerDelegate{
 }
 
 // MARK: - Delegates
+extension PTEsDetailViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let groupMembersController = groupMembersController else { return 0 }
+        return groupMembersController.groupMembers.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "pteMemberCell", for: indexPath) as? PTEsGroupMembersTableViewCell else { return UITableViewCell() }
+        
+        // Configure the cell...
+        let member = groupMembersController?.groupMembers[indexPath.row]
+        cell.member = member
+        return cell
+    }
+}
+
 
 extension PTEsDetailViewController: PTEsDatePickerDelegate {
     

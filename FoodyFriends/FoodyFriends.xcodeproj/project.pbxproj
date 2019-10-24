@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB4BC40423625D8C00924616 /* PTEsGroupMembersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4BC40323625D8C00924616 /* PTEsGroupMembersTableViewCell.swift */; };
 		BBD12CB3235E2904003AFECA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD12CB2235E2904003AFECA /* AppDelegate.swift */; };
 		BBD12CB5235E2904003AFECA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD12CB4235E2904003AFECA /* SceneDelegate.swift */; };
 		BBD12CB7235E2904003AFECA /* MainFoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD12CB6235E2904003AFECA /* MainFoodViewController.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BB4BC40323625D8C00924616 /* PTEsGroupMembersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PTEsGroupMembersTableViewCell.swift; sourceTree = "<group>"; };
 		BBD12CAF235E2904003AFECA /* FoodyFriends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodyFriends.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBD12CB2235E2904003AFECA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BBD12CB4235E2904003AFECA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -44,7 +46,7 @@
 		BBD12CD82360D1A3003AFECA /* GroupMembersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupMembersTableViewController.swift; sourceTree = "<group>"; };
 		BBD12CDC2360D3B0003AFECA /* GroupMembersModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupMembersModelController.swift; sourceTree = "<group>"; };
 		BBD12CDE2360D440003AFECA /* MemberModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberModel.swift; sourceTree = "<group>"; };
-		BBD12CE02360D701003AFECA /* MemberTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MemberTableViewCell.swift; path = FoodyFriends/MemberTableViewCell.swift; sourceTree = SOURCE_ROOT; };
+		BBD12CE02360D701003AFECA /* MemberTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MemberTableViewCell.swift; path = FoodyFriends/TableViewCells/MemberTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		BBD12CE22360D863003AFECA /* MemberDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MemberDetailViewController.swift; path = "FoodyFriends/View Controllers/MemberDetailViewController.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -59,6 +61,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BB4BC40523625E3200924616 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				BBD12CC6235E3D67003AFECA /* PTEsTableViewCell.swift */,
+				BB4BC40323625D8C00924616 /* PTEsGroupMembersTableViewCell.swift */,
+				BBD12CE02360D701003AFECA /* MemberTableViewCell.swift */,
+			);
+			path = TableViewCells;
+			sourceTree = "<group>";
+		};
 		BBD12CA6235E2904003AFECA = {
 			isa = PBXGroup;
 			children = (
@@ -83,8 +95,7 @@
 				BBD12CC8235E3D6E003AFECA /* View Controllers */,
 				BBD12CCF235E4FCF003AFECA /* Model Controllers */,
 				BBD12CD0235E4FE4003AFECA /* Models */,
-				BBD12CC6235E3D67003AFECA /* PTEsTableViewCell.swift */,
-				BBD12CE02360D701003AFECA /* MemberTableViewCell.swift */,
+				BB4BC40523625E3200924616 /* TableViewCells */,
 				BBD12CD52360C62B003AFECA /* Storyboards */,
 				BBD12CBB235E2905003AFECA /* Assets.xcassets */,
 				BBD12CBD235E2905003AFECA /* LaunchScreen.storyboard */,
@@ -211,6 +222,7 @@
 				BBD12CD92360D1A3003AFECA /* GroupMembersTableViewController.swift in Sources */,
 				BBD12CD2235E6042003AFECA /* PTEsDatePickerViewController.swift in Sources */,
 				BBD12CCE235E4DCD003AFECA /* PTEsModelController.swift in Sources */,
+				BB4BC40423625D8C00924616 /* PTEsGroupMembersTableViewCell.swift in Sources */,
 				BBD12CE12360D701003AFECA /* MemberTableViewCell.swift in Sources */,
 				BBD12CB3235E2904003AFECA /* AppDelegate.swift in Sources */,
 				BBD12CDD2360D3B0003AFECA /* GroupMembersModelController.swift in Sources */,

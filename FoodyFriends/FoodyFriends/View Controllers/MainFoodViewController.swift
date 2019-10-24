@@ -47,6 +47,7 @@ class MainFoodViewController: UIViewController, UNUserNotificationCenterDelegate
             guard let indexPath = PTEsTableView.indexPathForSelectedRow else { return }
             if let addPTEsVC = segue.destination as? PTEsDetailViewController {
                 addPTEsVC.pteController = self.pteController
+                addPTEsVC.groupMembersController = self.groupMembersController
                 addPTEsVC.placeToEat = placeToEatFor(indexPath: indexPath)
                 addPTEsVC.pteDelegate = self
             }

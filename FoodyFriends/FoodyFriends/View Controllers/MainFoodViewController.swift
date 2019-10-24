@@ -79,6 +79,18 @@ extension MainFoodViewController: UITableViewDataSource {
         }
     }
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        switch section {
+        case 0:
+            return "Scheduled"
+        case 1:
+            return "Expired"
+        default:
+            return ""
+        }
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = PTEsTableView.dequeueReusableCell(withIdentifier: pteCellIndentifier, for: indexPath) as? PTEsTableViewCell else { return UITableViewCell() }

@@ -13,7 +13,10 @@ class PTEsTableViewCell: UITableViewCell {
     // MARK: - IBOutlets
     @IBOutlet weak var pteNameLabel: UILabel!
     @IBOutlet weak var pteAddressLabel: UILabel!
+    @IBOutlet weak var pteDayLabel: UILabel!
+    @IBOutlet weak var pteMonthLabel: UILabel!
     @IBOutlet weak var pteImageView: UIImageView!
+   
     
     // MARK: - Properties
     var placeToEat: PlaceToEat? {
@@ -39,6 +42,16 @@ class PTEsTableViewCell: UITableViewCell {
         pteNameLabel.text = placeToEat.name
         pteAddressLabel.text = placeToEat.address
         pteImageView.image = UIImage(data: placeToEat.image)
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone.autoupdatingCurrent
+        
+        // Set the date label format first
+        formatter.dateFormat = "E"
+        pteDayLabel.text = formatter.string(from: placeToEat.scheduledDate)
+        
+        // Then set the time label format
+        formatter.dateFormat = "MMM, d @ h:mm a"
+        pteMonthLabel.text = formatter.string(from: placeToEat.scheduledDate)
     }
 
 }

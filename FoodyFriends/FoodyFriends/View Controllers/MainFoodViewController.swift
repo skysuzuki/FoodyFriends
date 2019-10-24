@@ -26,6 +26,14 @@ class MainFoodViewController: UIViewController, UNUserNotificationCenterDelegate
         // Do any additional setup after loading the view.
         UNUserNotificationCenter.current().delegate = self
     }
+    
+    private func placeToEatFor(indexPath: IndexPath) -> PlaceToEat {
+        if(indexPath.section == 0) {
+            return pteController.scheduledPlacesToEat[indexPath.row]
+        } else {
+            return pteController.pastDatePlacesToEat[indexPath.row]
+        }
+    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -39,7 +47,7 @@ class MainFoodViewController: UIViewController, UNUserNotificationCenterDelegate
             guard let indexPath = PTEsTableView.indexPathForSelectedRow else { return }
             if let addPTEsVC = segue.destination as? PTEsDetailViewController {
                 addPTEsVC.pteController = self.pteController
-                addPTEsVC.placeToEat = self.pteController.placesToEat[indexPath.row]
+                addPTEsVC.placeToEat = placeToEatFor(indexPath: indexPath)
                 addPTEsVC.pteDelegate = self
             }
         case groupMembersSegueIdentifier:
@@ -55,15 +63,27 @@ class MainFoodViewController: UIViewController, UNUserNotificationCenterDelegate
 }
 
 extension MainFoodViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        pteController.placesToEat.count
+        
+        if (section == 0) {
+            return pteController.scheduledPlacesToEat.count
+        } else if (section == 1) {
+            return pteController.pastDatePlacesToEat.count
+        } else {
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = PTEsTableView.dequeueReusableCell(withIdentifier: pteCellIndentifier, for: indexPath) as? PTEsTableViewCell else { return UITableViewCell() }
         
-        let placeToEat = pteController.placesToEat[indexPath.row]
+        let placeToEat = placeToEatFor(indexPath: indexPath)
         cell.placeToEat = placeToEat
         return cell
     }
@@ -71,7 +91,7 @@ extension MainFoodViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         if editingStyle == .delete {
-            let placeToEat = pteController.placesToEat[indexPath.row]
+            let placeToEat = placeToEatFor(indexPath: indexPath)
             pteController.deletePlaceToEat(placeToEat)
             PTEsTableView.deleteRows(at: [indexPath], with: .fade)
         }
@@ -81,7 +101,6 @@ extension MainFoodViewController: UITableViewDataSource {
 
 extension MainFoodViewController: PTEsUpdateDelegate {
     func placesToEatWasUpdated() {
-        
         pteController.sortPlaceToEatByDate()
         PTEsTableView.reloadData()
     }

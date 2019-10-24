@@ -13,9 +13,22 @@ class PlacesToEatController  {
     // MARK: Properties
     var placesToEat = [PlaceToEat]()
     
+    var pastDatePlacesToEat: [PlaceToEat] {
+        let currentDate = Date()
+        let ptePastDates = placesToEat.filter { $0.scheduledDate < currentDate }
+        return ptePastDates
+    }
+    
+    var scheduledPlacesToEat: [PlaceToEat] {
+        let currentDate = Date()
+        let pteScheduledDates = placesToEat.filter { $0.scheduledDate > currentDate }
+        return pteScheduledDates
+    }
+    
     init () {
         loadFromPersistentStore()
     }
+    
     // MARK: - Class Functions
     func createPlaceToEat(_ name: String, _ address: String, _ description: String,
                           _ scheduledDate: Date, _ imageData: Data) {

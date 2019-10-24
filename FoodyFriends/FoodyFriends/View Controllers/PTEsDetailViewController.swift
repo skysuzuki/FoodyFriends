@@ -63,7 +63,6 @@ UINavigationControllerDelegate, UIImagePickerControllerDelegate{
 
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "DatePickerSegue" {
             if let datePickerVC = segue.destination as? PTEsDatePickerViewController {
@@ -144,10 +143,8 @@ UINavigationControllerDelegate, UIImagePickerControllerDelegate{
             let timeText = self.timeLabel.text!
             content.body = "Scheduled meetup at \(nameOfPlaceText), \(addressText) on \(dateText) at \(timeText)."
         }
-        //content.categoryIdentifier = "alarm"
-        //content.userInfo = ["customData": "fizzbuzz"]
-        content.sound = UNNotificationSound.default
 
+        content.sound = UNNotificationSound.default
         
         var dateComponents = DateComponents()
         // Set flags so it only cares about certain datecomponents when setting it up with the Calender.current.datecomponents

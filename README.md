@@ -6,3 +6,9 @@ Foody friends allows friends to schedule lunch outings. The app will provide not
 
 
 <img src="https://i.ibb.co/jTTthcM/Simulator-Screen-Shot-i-Phone-11-2020-10-23-at-13-58-19.png" width = "200" />
+
+<img src="https://ibb.co/Jr0tkfc"><img src="https://i.ibb.co/sskR30g/Simulator-Screen-Shot-i-Phone-11-2020-10-23-at-14-01-27.png"  width = "200" />
+
+<img src="https://ibb.co/jgr2YCP"><img src="https://i.ibb.co/YpLMS5F/Simulator-Screen-Shot-i-Phone-11-2020-10-23-at-13-57-10.png" width = "200" />
+
+<img src="https://ibb.co/spSVqzT"><img src="https://i.ibb.co/WN92fjr/Simulator-Screen-Shot-i-Phone-11-2020-10-23-at-13-58-09.png" width = "200" />
